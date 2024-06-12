@@ -35,6 +35,7 @@ const Form = ({ loading, onSubmit, ...props }) => {
     }
 
     let data = {
+      id: Math.random(),
       name,
       status,
       age,
