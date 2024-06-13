@@ -1,7 +1,7 @@
 /** @format */
 import "./button.css";
 
-const Button = ({ children, loading }) => {
+const Button = ({ children, loading,text }) => {
   return (
     <button className="Btn" type="submit">
       {!loading ? (
@@ -45,7 +45,7 @@ const Button = ({ children, loading }) => {
           </defs>
         </svg>
       ) : (
-        <p>Salvando</p>
+        <p>{text}</p>
       )}
 
       <span className="tooltip">{children}</span>

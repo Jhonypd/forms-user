@@ -103,7 +103,9 @@ const Form = ({ loading, onSubmit, ...props }) => {
         />
       </div>
       <div className="form-control">
-        <Button loading={loading}>Salvar</Button>
+        <Button text={"salvando"} loading={loading}>
+          Salvar
+        </Button>
       </div>
     </form>
   );

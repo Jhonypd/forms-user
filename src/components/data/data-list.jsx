@@ -17,6 +17,7 @@ const DataList = ({ data, onDelete }) => {
   return (
     <div className="data-display">
       <h2>{data.name}</h2>
+        
       <div className="data-user">
         <div className="info">
           <p>
