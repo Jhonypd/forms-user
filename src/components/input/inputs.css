@@ -34,6 +34,8 @@
 .form-control {
   position: relative;
   --width-of-input: 300px;
+  display: flex;
+  flex-direction: column;gap: 14px;
 }
 
 .input-alt {
@@ -72,6 +74,4 @@ input[type="radio"]:focus + .input-border-alt {
 .error-message {
   color: #dc3545;
   font-size: 14px;
-  margin-top: -10px;
-  margin-bottom: 10px;
 }

@@ -28,7 +28,12 @@
 }
 
 label {
-  margin-bottom: 5px;
   color: #555;
   font-size: 14px;
+}
+
+.combo-input{
+  display: flex;
+  gap: 14px;
+  justify-content: center; align-items: center;
 }

@@ -1,110 +1,34 @@
 /** @format */
 
 import "./form.css";
-import Inputs from "../input/input";
 import Button from "../button/button";
 import { useState } from "react";
+import Select from "../input/select";
 
 const Form = ({ loading, onSubmit, ...props }) => {
-  const [name, setName] = useState("");
-  const [status, setStatus] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [errors, setErrors] = useState({});
-
-  const validateForm = () => {
-    const newErrors = {};
-    if (!name) {
-      newErrors.name = "Nome é obrigatório.";
-    } else if (/\d/.test(name)) {
-      newErrors.name = "Nome não pode conter numeros";
-    }
-    if (!status) newErrors.status = "Estado civil é obrigatório.";
-    if (!age) newErrors.age = "Idade é obrigatória.";
-    if (!gender) newErrors.gender = "Sexo é obrigatório.";
-    return newErrors;
-  };
+  const [airportCode, setAirportCode] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newErrors = validateForm();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    let data = {
+    const data = {
       id: Math.random(),
-      name,
-      status,
-      age,
-      gender,
+      airportCode,
     };
 
-    if (onSubmit) {
-      onSubmit(data);
-    }
+    if (onSubmit) onSubmit(data);
 
-    setAge("");
-    setGender("");
-    setName("");
-    setStatus("");
-    setErrors({});
+    setAirportCode("");
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit} {...props}>
-      <Inputs
-        type="text"
-        value={name}
-        placeholder="Name"
-        onChange={(e) => setName(e.target.value)}
-        errors={errors.name}
-      />
-
-      <Inputs
-        type="text"
-        value={status}
-        placeholder="Estado civil"
-        onChange={(e) => setStatus(e.target.value)}
-        errors={errors.status}
-      />
-
-      <Inputs
-        type="number"
-        value={age}
-        placeholder="Idade"
-        onChange={(e) => setAge(e.target.value)}
-        errors={errors.age}
-      />
-
+    <form className="form-container" onSubmit={handleSubmit}>
       <div className="flex-row form-control">
-        <span>Sexo:</span>
-        <label htmlFor="male">M</label>
-        <Inputs
-          type="radio"
-          id="male"
-          value="Masculino"
-          name="gender"
-          checked={gender === "Masculino"}
-          onChange={(e) => setGender(e.target.value)}
-          errors={errors.gender}
-        />
-        <label htmlFor="female">F</label>
-        <Inputs
-          type="radio"
-          id="female"
-          value="Feminino"
-          name="gender"
-          checked={gender === "Feminino"}
-          onChange={(e) => setGender(e.target.value)}
-          errors={errors.gender}
-        />
+        <Select className={"form-control"} onChange={setAirportCode} />
       </div>
       <div className="form-control">
-        <Button text={"salvando"} loading={loading}>
-          Salvar
+        <Button text={"Buscando"} loading={loading}>
+          Buscar
         </Button>
       </div>
     </form>
