@@ -6,6 +6,12 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  padding: 20px;
+  background-color: #26223d;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .flex-row {
@@ -15,13 +21,11 @@
   margin: 15px auto;
   gap: 16px;
 }
-.flex-row > label {
-  margin: 0;
-}
 
 .flex-column {
   display: flex;
   flex-direction: column;
+  align-items: center;
   color: #555;
   margin-bottom: 15px;
   gap: 16px;
@@ -32,8 +36,33 @@ label {
   font-size: 14px;
 }
 
-.combo-input{
+.combo-input {
   display: flex;
   gap: 14px;
-  justify-content: center; align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  column-gap: 16px;
+  row-gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #555;
+  margin: 0 auto;
+}
+
+.form-control:focus {
+  border-color: #072d55;
+  outline: none;
 }

@@ -13,6 +13,9 @@ const Inputs = ({
   onClick,
   id,
   checked,
+  min,
+  max,
+  step,
 }) => {
   return (
     <>
@@ -29,13 +32,14 @@ const Inputs = ({
           value={value}
           name={name}
           checked={checked}
+          min={min}
+          max={max}
+          step={step}
         />
 
         <span className="input-border input-border-alt"></span>
       </div>
-      {errors && (
-        <span className="error-message">{errors}</span>
-      )}
+      {errors && <span className="error-message">{errors}</span>}
     </>
   );
 };
