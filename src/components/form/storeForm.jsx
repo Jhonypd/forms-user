@@ -1,19 +1,28 @@
 /** @format */
 
 import React from "react";
-import formHandling from "../HOCs/formHandling";
+import useFormHandling from "../HOCs/useFormHandling";
 import { storeFormInitialValues, validateStoreForm } from "../HOCs/validateStoreForm";
 
-const StoreForm = React.forwardRef(
-  ({ values, errors, handleChange, handleSubmit }, ref) => (
-    <form onSubmit={handleSubmit} ref={ref}>
+const StoreForm = () => {
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    toastMessage,
+    toastType,
+  } = useFormHandling(validateStoreForm, storeFormInitialValues);
+
+  return (
+    <form onSubmit={handleSubmit}>
       <div>
         <label>Nome da Loja</label>
         <input
           className={errors.storeName ? "error" : ""}
           type="text"
           name="storeName"
-          value={values.storeName || ''}
+          value={values.storeName || ""}
           onChange={handleChange}
         />
       </div>
@@ -23,7 +32,7 @@ const StoreForm = React.forwardRef(
           className={errors.email ? "error" : ""}
           type="email"
           name="email"
-          value={values.email || ''}
+          value={values.email || ""}
           onChange={handleChange}
         />
       </div>
@@ -33,12 +42,14 @@ const StoreForm = React.forwardRef(
           className={errors.password ? "error" : ""}
           type="password"
           name="password"
-          value={values.password || ''}
+          value={values.password || ""}
           onChange={handleChange}
         />
       </div>
-    </form>
-  )
-);
 
-export default formHandling(StoreForm, validateStoreForm, storeFormInitialValues);
+      {toastMessage && <div className={`toast ${toastType}`}>{toastMessage}</div>}
+    </form>
+  );
+};
+
+export default StoreForm;

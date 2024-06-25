@@ -12,37 +12,29 @@ const Register = () => {
   const [bankFormData, setBankFormData] = useState({});
 
   const handleStoreSubmit = (data) => {
-    console.log("Store data submitted:", data);
     setStoreData(data);
     setStoreFormData(data);
     setStep(2);
   };
 
   const handleBankSubmit = (data) => {
-    console.log("Bank data submitted:", data);
     setBankData(data);
     setBankFormData(data);
-    const comboData = { ...storeData, ...data };
-    console.log("Combined data:", comboData);
   };
 
   const goToPreviousStep = (e) => {
     e.preventDefault();
-    console.log("Going to previous step");
     setStep(step - 1);
     if (step === 2) {
-      console.log("Restoring store data:", storeData);
       setStoreFormData(storeData);
     }
   };
 
   const goToNextStep = (e) => {
     e.preventDefault();
-    console.log("Going to next step");
     setStep(step + 1);
 
     if (step === 2) {
-      console.log("Restoring bank data:", bankData);
       setBankFormData(bankData);
     }
   };

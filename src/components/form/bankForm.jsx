@@ -1,18 +1,29 @@
 /** @format */
+
 import React from "react";
-import formHandling from "../HOCs/formHandling";
+import useFormHandling from "../HOCs/useFormHandling";
 import { bankFormInitialValues, validateBankForm } from "../HOCs/validateBankingForm";
 
-const BankForm = React.forwardRef(
-  ({ values, errors, handleChange, handleSubmit }, ref) => (
-    <form onSubmit={handleSubmit} ref={ref}>
+const BankForm = () => {
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    isSubmitting,
+    toastMessage,
+    toastType,
+  } = useFormHandling(validateBankForm, bankFormInitialValues);
+
+  return (
+    <form onSubmit={handleSubmit}>
       <div>
         <label>Nome do Banco</label>
         <input
           className={errors.bankName ? "error" : ""}
           type="text"
           name="bankName"
-          value={values.bankName}
+          value={values.bankName || ""}
           onChange={handleChange}
         />
       </div>
@@ -22,7 +33,7 @@ const BankForm = React.forwardRef(
           className={errors.accountNumber ? "error" : ""}
           type="text"
           name="accountNumber"
-          value={values.accountNumber}
+          value={values.accountNumber || ""}
           onChange={handleChange}
         />
       </div>
@@ -31,13 +42,16 @@ const BankForm = React.forwardRef(
         <input
           type="text"
           name="routingNumber"
-          value={values.routingNumber}
+          value={values.routingNumber || ""}
           onChange={handleChange}
         />
       </div>
-      <button type="submit">Cadastrar</button>
+      <button type="submit" disabled={isSubmitting}>
+        Submit
+      </button>
+      {toastMessage && <div className={`toast ${toastType}`}>{toastMessage}</div>}
     </form>
-  )
-);
+  );
+};
 
-export default formHandling(BankForm, validateBankForm, bankFormInitialValues);
+export default BankForm;

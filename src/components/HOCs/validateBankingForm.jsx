@@ -1,19 +1,22 @@
-/** @format */
 export const validateBankForm = (values) => {
   let errors = {};
+
   if (!values.bankName) {
-    errors.bankName = "Nome do banco é obrigatório";
+    errors.bankName = "O nome do banco é obrigatório.";
   }
+
   if (!values.accountNumber) {
-    errors.accountNumber = "Número da conta é obrigatório";
+    errors.accountNumber = "O número da conta é obrigatório.";
   } else if (!/^\d{4,}$/.test(values.accountNumber)) {
-    errors.accountNumber = "Número da conta inválido";
+    errors.accountNumber = "O número da conta deve conter pelo menos 4 dígitos.";
   }
+
   if (!values.routingNumber) {
-    errors.routingNumber = "Código de roteamento é obrigatório";
+    errors.routingNumber = "O código de roteamento é obrigatório.";
   } else if (!/^\d{9}$/.test(values.routingNumber)) {
-    errors.routingNumber = "Código de roteamento inválido";
+    errors.routingNumber = "O código de roteamento deve conter exatamente 9 dígitos.";
   }
+
   return errors;
 };
 
